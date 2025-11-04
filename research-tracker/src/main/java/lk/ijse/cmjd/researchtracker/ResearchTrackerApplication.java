@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.researchtracker.research_tracker;
+package lk.ijse.cmjd.researchtracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
