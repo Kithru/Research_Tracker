@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.researchtracker.model.Project;
+import lk.ijse.cmjd.project.Project;
 import lk.ijse.cmjd.project.ProjectRepository;
 import lk.ijse.cmjd.service.ProjectService;
 
@@ -57,7 +57,7 @@ public class ProjectServiceImpl implements ProjectService {
         Optional<Project> existingProject = projectRepository.findById(id);
         if (existingProject.isPresent()) {
             Project project = existingProject.get();
-            project.setStatus(Project.status.valueOf(status.toUpperCase()));
+            project.setStatus(Project.Status.valueOf(status.toUpperCase()));
             project.setUpdatedAt(LocalDateTime.now());
             return projectRepository.save(project);
         }
