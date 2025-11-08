@@ -1,12 +1,10 @@
-package lk.ijse.cmjd.document;
+package lk.ijse.cmjd.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import lk.ijse.cmjd.project.Project;
-import lk.ijse.cmjd.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Document {
+public class Milestone {
 
     @Id
     private String id;
@@ -26,10 +24,9 @@ public class Document {
 
     private String title;
     private String description;
-    private String urlOrPath;
+    private LocalDate dueDate;
+    private Boolean isCompleted;
 
     @ManyToOne
-    private User uploadedBy;
-
-    private LocalDateTime uploadedAt;
+    private User createdBy;
 }

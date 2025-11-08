@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.user;
+package lk.ijse.cmjd.model;
 
 import java.time.LocalDateTime;
 
