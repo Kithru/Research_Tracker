@@ -9,7 +9,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lk.ijse.cmjd.common.Status;
-import lk.ijse.cmjd.user.User; // ✅ Correct import
+import lk.ijse.cmjd.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +27,7 @@ public class Project {
     private String summary;
 
     @Enumerated(EnumType.STRING)
-    private Status status; // ✅ Uses your custom enum
+    private Status status;
 
     @ManyToOne
     private User pi;
