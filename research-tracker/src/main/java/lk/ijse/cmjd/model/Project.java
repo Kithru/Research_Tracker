@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.project;
+package lk.ijse.cmjd.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,7 +9,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lk.ijse.cmjd.common.Status;
-import lk.ijse.cmjd.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

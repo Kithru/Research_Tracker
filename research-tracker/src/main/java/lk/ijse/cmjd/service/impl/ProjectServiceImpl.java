@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lk.ijse.cmjd.common.Status;
-import lk.ijse.cmjd.project.Project;
-import lk.ijse.cmjd.project.ProjectRepository;
+import lk.ijse.cmjd.model.Project;
+import lk.ijse.cmjd.repository.ProjectRepository;
 import lk.ijse.cmjd.service.ProjectService;
 
 @Service
