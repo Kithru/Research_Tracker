@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface MilestoneService {
 
-    Milestone createMilestone(Milestone milestone);
+    Milestone createForProject(String projectId, Milestone milestone);
 
-    Milestone updateMilestone(String id, Milestone milestone);
+    Milestone update(String id, Milestone milestone);
 
-    List<Milestone> getMilestonesByProjectId(String projectId);
+    List<Milestone> getByProject(String projectId);
 
-    void deleteMilestone(String id);
+    void delete(String id);
 }

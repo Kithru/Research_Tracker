@@ -1,7 +1,9 @@
 package lk.ijse.cmjd.service.impl;
 
 import lk.ijse.cmjd.model.Document;
+import lk.ijse.cmjd.model.Project;
 import lk.ijse.cmjd.repository.DocumentRepository;
+import lk.ijse.cmjd.repository.ProjectRepository;
 import lk.ijse.cmjd.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,18 +16,24 @@ public class DocumentServiceImpl implements DocumentService {
     @Autowired
     private DocumentRepository documentRepository;
 
-    @Override
-    public Document uploadDocument(Document document) {
-        return documentRepository.save(document);
-    }
+    @Autowired
+    private ProjectRepository projectRepository;
 
     @Override
-    public List<Document> getDocumentsByProjectId(String projectId) {
+    public List<Document> getByProject(String projectId) {
         return documentRepository.findByProjectId(projectId);
     }
 
     @Override
-    public void deleteDocument(String id) {
+    public Document createForProject(String projectId, Document document) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new RuntimeException("Project not found with id: " + projectId));
+        document.setProject(project);
+        return documentRepository.save(document);
+    }
+
+    @Override
+    public void delete(String id) {
         documentRepository.deleteById(id);
     }
 }

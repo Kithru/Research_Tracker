@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface DocumentService {
 
-    Document uploadDocument(Document document);
+    List<Document> getByProject(String projectId);
 
-    List<Document> getDocumentsByProjectId(String projectId);
+    Document createForProject(String projectId, Document document);
 
-    void deleteDocument(String id);
+    void delete(String id);
 }
