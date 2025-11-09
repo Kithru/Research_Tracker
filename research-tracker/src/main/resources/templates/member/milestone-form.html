@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Upload Document</title>
+    <title>Add Milestone</title>
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
 
-<h1>Upload Document</h1>
+<h1>Add Milestone</h1>
 
-<form th:action="@{/api/projects/{projectId}/documents(projectId=${project.id})}" method="post">
+<form th:action="@{/api/projects/{projectId}/milestones(projectId=${project.id})}" method="post">
     <label>Title:</label>
     <input type="text" name="title" required />
 
     <label>Description:</label>
     <textarea name="description"></textarea>
 
-    <label>File URL/Path:</label>
-    <input type="text" name="urlOrPath" required />
+    <label>Due Date:</label>
+    <input type="date" name="dueDate" required />
 
-    <button type="submit">Upload</button>
+    <button type="submit">Add Milestone</button>
 </form>
 </body>
 </html>

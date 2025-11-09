@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Projects</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Projects Management</h1>
+<a th:href="@{/admin/projects/create}">Add New Project</a>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.title}">Project</td>
+        <td th:text="${project.status}">Status</td>
+        <td>
+            <a th:href="@{'/admin/projects/edit/' + ${project.id}}">Edit</a>
+            <a th:href="@{'/api/projects/' + ${project.id} + '/delete'}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

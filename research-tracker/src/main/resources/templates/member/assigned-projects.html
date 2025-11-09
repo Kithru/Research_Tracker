@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assigned Projects</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<h1>My Assigned Projects</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="project : ${projects}">
+        <td th:text="${project.title}">Project Title</td>
+        <td th:text="${project.status}">Status</td>
+        <td>
+            <a th:href="@{'/member/milestone-form/' + ${project.id}}">Add Milestone</a> |
+            <a th:href="@{'/member/document-upload/' + ${project.id}}">Upload Document</a> |
+            <a th:href="@{'/pi/project-details/' + ${project.id}}">View</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

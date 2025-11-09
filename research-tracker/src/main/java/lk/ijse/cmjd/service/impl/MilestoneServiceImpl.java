@@ -51,4 +51,9 @@ public class MilestoneServiceImpl implements MilestoneService {
         }
         milestoneRepository.deleteById(id);
     }
+
+    @Override
+    public List<Milestone> getAllMilestones() {
+        return milestoneRepository.findAll();
+    }
 }

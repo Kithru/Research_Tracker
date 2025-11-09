@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Documents</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Documents Management</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Project</th>
+        <th>Uploaded By</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doc : ${documents}">
+        <td th:text="${doc.title}">Doc Title</td>
+        <td th:text="${doc.project.title}">Project</td>
+        <td th:text="${doc.uploadedBy.name}">User</td>
+        <td>
+            <a th:href="@{'/api/documents/' + ${doc.id} + '/delete'}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
