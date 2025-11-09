@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Milestones</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<h1>Milestones Management</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Project</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${milestones}">
+        <td th:text="${m.title}">Milestone</td>
+        <td th:text="${m.project.title}">Project</td>
+        <td th:text="${m.dueDate}">Due Date</td>
+        <td>
+            <a th:href="@{'/admin/milestones/edit/' + ${m.id}}">Edit</a>
+            <a th:href="@{'/api/milestones/' + ${m.id} + '/delete'}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
