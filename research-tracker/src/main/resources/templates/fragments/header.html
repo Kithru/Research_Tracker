@@ -1,0 +1,30 @@
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            
+            <!-- Admin Menu -->
+            <li th:if="${#authentication.principal.role == 'ADMIN'}">
+                <a th:href="@{/admin/dashboard}">Dashboard</a>
+            </li>
+            <li th:if="${#authentication.principal.role == 'ADMIN'}">
+                <a th:href="@{/admin/users}">Users</a>
+            </li>
+            
+            <!-- PI Menu -->
+            <li th:if="${#authentication.principal.role == 'PI'}">
+                <a th:href="@{/pi/dashboard}">My Dashboard</a>
+            </li>
+            
+            <!-- MEMBER Menu -->
+            <li th:if="${#authentication.principal.role == 'MEMBER'}">
+                <a th:href="@{/member/assigned-projects}">My Projects</a>
+            </li>
+            
+            <!-- VIEWER Menu -->
+            <li th:if="${#authentication.principal.role == 'VIEWER'}">
+                <a th:href="@{/viewer/projects-list}">Projects</a>
+            </li>
+        </ul>
+    </nav>
+</header>
