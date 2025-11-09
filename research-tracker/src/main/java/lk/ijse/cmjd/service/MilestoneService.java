@@ -12,4 +12,6 @@ public interface MilestoneService {
     List<Milestone> getByProject(String projectId);
 
     void delete(String id);
+
+    List<Milestone> getAllMilestones();
 }

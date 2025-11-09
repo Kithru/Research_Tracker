@@ -10,4 +10,6 @@ public interface DocumentService {
     Document createForProject(String projectId, Document document);
 
     void delete(String id);
+
+    List<Document> getAllDocuments();
 }
