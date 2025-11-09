@@ -15,18 +15,20 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody User user) {
-        User saved = authService.register(user);
-        saved.setPassword(null);
-        return ResponseEntity.ok(saved);
+    public ResponseEntity<User> signup(@RequestBody User user) {
+        User savedUser = authService.register(user);
+        // Don’t return password in response
+        savedUser.setPassword(null);
+        return ResponseEntity.ok(savedUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
-        String token = authService.login(req.getUsername(), req.getPassword());
+    public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest request) {
+        String token = authService.login(request.username(), request.password());
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
+    // ✅ Records are used correctly for request/response
     public static record LoginRequest(String username, String password) {
 
     }

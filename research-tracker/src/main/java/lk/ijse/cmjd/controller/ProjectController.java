@@ -1,6 +1,7 @@
 package lk.ijse.cmjd.controller;
 
 import lk.ijse.cmjd.model.Project;
+import lk.ijse.cmjd.model.Status;
 import lk.ijse.cmjd.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -53,7 +54,8 @@ public class ProjectController {
         return ResponseEntity.noContent().build();
     }
 
-    public static record StatusUpdate(String status) {
+    // ✅ Use enum instead of String for type safety
+    public static record StatusUpdate(Status status) {
 
     }
 }
