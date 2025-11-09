@@ -1,72 +1,60 @@
 package lk.ijse.cmjd.service.impl;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import lk.ijse.cmjd.common.Status;
 import lk.ijse.cmjd.model.Project;
+import lk.ijse.cmjd.model.Status;
 import lk.ijse.cmjd.repository.ProjectRepository;
 import lk.ijse.cmjd.service.ProjectService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
+@Transactional
 public class ProjectServiceImpl implements ProjectService {
 
-    @Autowired
-    private ProjectRepository projectRepository;
+    private final ProjectRepository repo;
 
-    @Override
-    public Project createProject(Project project) {
-        project.setCreatedAt(LocalDateTime.now());
-        project.setUpdatedAt(LocalDateTime.now());
-        return projectRepository.save(project);
+    public ProjectServiceImpl(ProjectRepository repo) {
+        this.repo = repo;
     }
 
     @Override
-    public Project updateProject(String id, Project updatedProject) {
-        Optional<Project> existingProject = projectRepository.findById(id);
-        if (existingProject.isPresent()) {
-            Project project = existingProject.get();
-            project.setTitle(updatedProject.getTitle());
-            project.setSummary(updatedProject.getSummary());
-            project.setStatus(updatedProject.getStatus());
-            project.setPi(updatedProject.getPi());
-            project.setTags(updatedProject.getTags());
-            project.setStartDate(updatedProject.getStartDate());
-            project.setEndDate(updatedProject.getEndDate());
-            project.setUpdatedAt(LocalDateTime.now());
-            return projectRepository.save(project);
-        }
-        throw new RuntimeException("Project not found with ID: " + id);
+    public Project createProject(Project project) {
+        return repo.save(project);
+    }
+
+    @Override
+    public Project updateProject(String id, Project project) {
+        Project existing = repo.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+        existing.setTitle(project.getTitle());
+        existing.setSummary(project.getSummary());
+        existing.setEndDate(project.getEndDate());
+        existing.setStartDate(project.getStartDate());
+        existing.setTags(project.getTags());
+        existing.setPi(project.getPi());
+        return repo.save(existing);
     }
 
     @Override
     public List<Project> getAllProjects() {
-        return projectRepository.findAll();
+        return repo.findAll();
     }
 
     @Override
-    public Optional<Project> getProjectById(String id) {
-        return projectRepository.findById(id);
+    public Project getProjectById(String id) {
+        return repo.findById(id).orElseThrow(() -> new RuntimeException("Project not found"));
     }
 
     @Override
     public Project updateStatus(String id, String status) {
-        Optional<Project> existingProject = projectRepository.findById(id);
-        if (existingProject.isPresent()) {
-            Project project = existingProject.get();
-            project.setStatus(Status.valueOf(status.toUpperCase()));
-            project.setUpdatedAt(LocalDateTime.now());
-            return projectRepository.save(project);
-        }
-        throw new RuntimeException("Project not found with ID: " + id);
+        Project p = getProjectById(id);
+        p.setStatus(Status.valueOf(status));
+        return repo.save(p);
     }
 
     @Override
     public void deleteProject(String id) {
-        projectRepository.deleteById(id);
+        repo.deleteById(id);
     }
 }

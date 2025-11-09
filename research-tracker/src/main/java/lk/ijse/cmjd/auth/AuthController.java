@@ -1,9 +1,8 @@
 package lk.ijse.cmjd.auth;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import lk.ijse.cmjd.model.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -16,15 +15,23 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String signup(@RequestParam String username,
-            @RequestParam String password,
-            @RequestParam String fullName) {
-        return authService.signup(username, password, fullName);
+    public ResponseEntity<?> signup(@RequestBody User user) {
+        User saved = authService.register(user);
+        saved.setPassword(null);
+        return ResponseEntity.ok(saved);
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,
-            @RequestParam String password) {
-        return authService.login(username, password);
+    public ResponseEntity<?> login(@RequestBody LoginRequest req) {
+        String token = authService.login(req.getUsername(), req.getPassword());
+        return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    public static record LoginRequest(String username, String password) {
+
+    }
+
+    public static record JwtResponse(String token) {
+
     }
 }
