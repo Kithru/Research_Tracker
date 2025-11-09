@@ -20,6 +20,7 @@ public class ProjectServiceImpl implements ProjectService {
         this.projectRepository = projectRepository;
     }
 
+    // ==================== CRUD ====================
     @Override
     public Project createProject(Project project) {
         project.setCreatedAt(LocalDateTime.now());
@@ -69,5 +70,21 @@ public class ProjectServiceImpl implements ProjectService {
             throw new RuntimeException("Project not found with id: " + id);
         }
         projectRepository.deleteById(id);
+    }
+
+    // ==================== ROLE-SPECIFIC METHODS ====================
+    @Override
+    public List<Project> getProjectsByPI(String username) {
+        return projectRepository.findByPiUsername(username); // Implement in ProjectRepository
+    }
+
+    @Override
+    public List<Project> getProjectsForMember(String username) {
+        return projectRepository.findByMemberUsername(username); // Implement in ProjectRepository
+    }
+
+    @Override
+    public List<Project> getPublicProjects() {
+        return projectRepository.findByStatusPublic(); // Implement in ProjectRepository
     }
 }
