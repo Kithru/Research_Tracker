@@ -26,12 +26,19 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable String id) {
-        return ResponseEntity.ok(service.getById(id));
+        return service.getUserById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        return ResponseEntity.ok(service.registerUser(user));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-        service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        service.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 }

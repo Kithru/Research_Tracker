@@ -1,8 +1,9 @@
 package lk.ijse.cmjd.service;
 
-import lk.ijse.cmjd.model.*;
+import lk.ijse.cmjd.model.Project;
+import lk.ijse.cmjd.model.Status;
+
 import java.util.List;
-import java.util.Optional;
 
 public interface ProjectService {
 
@@ -12,7 +13,7 @@ public interface ProjectService {
 
     List<Project> getAllProjects();
 
-    Optional<Project> getProjectById(String id);
+    Project getProjectById(String id);
 
     Project updateStatus(String id, Status status);
 
