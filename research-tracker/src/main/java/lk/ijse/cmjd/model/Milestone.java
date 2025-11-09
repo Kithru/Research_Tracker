@@ -2,7 +2,6 @@ package lk.ijse.cmjd.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -25,7 +24,7 @@ public class Milestone {
 
     private LocalDate dueDate;
 
-    private Boolean isCompleted = false;
+    private Boolean completed = false; // ✅ renamed for cleaner getter/setter
 
     @ManyToOne
     @JoinColumn(name = "created_by")
@@ -40,5 +39,4 @@ public class Milestone {
             id = UUID.randomUUID().toString();
         }
     }
-
 }
