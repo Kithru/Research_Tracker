@@ -1,19 +1,17 @@
 package lk.ijse.cmjd.service;
 
+import lk.ijse.cmjd.model.Project;
 import java.util.List;
-import java.util.Optional;
-
-import lk.ijse.cmjd.project.Project;
 
 public interface ProjectService {
 
     Project createProject(Project project);
 
-    Project updateProject(String id, Project updatedProject);
+    Project updateProject(String id, Project project);
 
     List<Project> getAllProjects();
 
-    Optional<Project> getProjectById(String id);
+    Project getProjectById(String id);
 
     Project updateStatus(String id, String status);
 

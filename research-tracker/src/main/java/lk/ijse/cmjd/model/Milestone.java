@@ -1,32 +1,44 @@
 package lk.ijse.cmjd.model;
 
-import java.time.LocalDate;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
+@Table(name = "milestones")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class Milestone {
 
     @Id
     private String id;
 
     @ManyToOne
+    @JoinColumn(name = "project_id")
     private Project project;
 
     private String title;
+
+    @Column(length = 2000)
     private String description;
+
     private LocalDate dueDate;
-    private Boolean isCompleted;
+
+    private Boolean isCompleted = false;
 
     @ManyToOne
+    @JoinColumn(name = "created_by")
     private User createdBy;
+
+    public Milestone() {
+    }
+
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
+
 }
