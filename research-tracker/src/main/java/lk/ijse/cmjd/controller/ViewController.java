@@ -117,13 +117,16 @@ public class ViewController {
         return "viewer/project-details";
     }
 
-    // ==================== LOGIN ====================
+    @GetMapping("/")
+    public String home() {
+        return "login";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    // ==================== REGISTER ====================
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("user", new User());
