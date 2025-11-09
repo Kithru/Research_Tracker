@@ -1,9 +1,10 @@
 package lk.ijse.cmjd.controller;
 
-import lk.ijse.cmjd.service.ProjectService;
-import lk.ijse.cmjd.service.UserService;
+import lk.ijse.cmjd.model.User;
 import lk.ijse.cmjd.service.DocumentService;
 import lk.ijse.cmjd.service.MilestoneService;
+import lk.ijse.cmjd.service.ProjectService;
+import lk.ijse.cmjd.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,12 @@ public class ViewController {
         this.userService = userService;
         this.documentService = documentService;
         this.milestoneService = milestoneService;
+    }
+
+    // ==================== ROOT REDIRECT ====================
+    @GetMapping("/")
+    public String rootRedirect() {
+        return "redirect:/login"; // redirect root URL to login page
     }
 
     // ==================== ADMIN ====================
@@ -116,4 +123,10 @@ public class ViewController {
         return "login";
     }
 
+    // ==================== REGISTER ====================
+    @GetMapping("/register")
+    public String registerForm(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+    }
 }
