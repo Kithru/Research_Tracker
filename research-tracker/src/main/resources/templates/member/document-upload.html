@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Upload Document</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1>Upload Document</h1>
+<header>
+    <h1>Upload Document</h1>
+    <nav><a href="/member/assigned-projects.html">Back to Projects</a></nav>
+</header>
 
-<form th:action="@{/api/projects/{projectId}/documents(projectId=${project.id})}" method="post">
-    <label>Title:</label>
-    <input type="text" name="title" required />
+<main>
+    <form id="document-form" enctype="multipart/form-data">
+        <label>Document Title:</label>
+        <input type="text" name="title" required>
+        <label>Choose File:</label>
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+</main>
 
-    <label>Description:</label>
-    <textarea name="description"></textarea>
+<script>
+const form = document.getElementById('document-form');
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const projectId = window.location.pathname.split('/').pop();
+    const formData = new FormData(form);
+    fetch(`/api/member/documents/${projectId}`, {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(res => alert('Document uploaded!'))
+    .catch(err => console.error(err));
+});
+</script>
 
-    <label>File URL/Path:</label>
-    <input type="text" name="urlOrPath" required />
-
-    <button type="submit">Upload</button>
-</form>
 </body>
 </html>

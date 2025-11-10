@@ -1,30 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>PI Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div th:replace="fragments/header :: header"></div>
 
-    <h1>My Projects</h1>
-    <table>
+<header>
+    <h1>PI Dashboard</h1>
+    <nav><a href="/pi/my-projects.html">My Projects</a></nav>
+</header>
+
+<main>
+    <table border="1">
         <thead>
             <tr>
-                <th>Title</th>
+                <th>Project</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-            <tr th:each="project : ${projects}">
-                <td th:text="${project.title}">Project Title</td>
-                <td th:text="${project.status}">Status</td>
+        <tbody id="pi-projects-table-body"></tbody>
+    </table>
+</main>
+
+<script>
+fetch('/api/pi/projects')
+.then(res => res.json())
+.then(projects => {
+    const tbody = document.getElementById('pi-projects-table-body');
+    tbody.innerHTML = '';
+    projects.forEach(p => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${p.title}</td>
+                <td>${p.status}</td>
                 <td>
-                    <a th:href="@{'/pi/project-details/' + ${project.id}}">View</a>
-                    <a th:href="@{'/pi/edit-project/' + ${project.id}}">Edit</a>
+                    <a href="/pi/project-details/${p.id}">View</a>
                 </td>
             </tr>
-        </tbody>
-    </table>
+        `;
+    });
+});
+</script>
+
 </body>
 </html>

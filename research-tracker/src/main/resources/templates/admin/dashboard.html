@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <div th:replace="fragments/header :: header"></div>
 
-    <h1>Admin Dashboard</h1>
+<h1>Admin Dashboard</h1>
 
-    <section>
-        <h2>Projects</h2>
-        <a th:href="@{/admin/projects}">Manage Projects</a>
-    </section>
+<nav>
+    <a href="/admin/users">Users</a> |
+    <a href="/admin/projects">Projects</a> |
+    <a href="/admin/documents">Documents</a> |
+    <a href="/admin/milestones">Milestones</a>
+</nav>
 
-    <section>
-        <h2>Users</h2>
-        <a th:href="@{/admin/users}">Manage Users</a>
-    </section>
+<div class="dashboard-content">
+    <p>Welcome to the Admin Dashboard</p>
+    <!-- You can populate user/project tables here later -->
+</div>
 
-    <section>
-        <h2>Documents</h2>
-        <a th:href="@{/admin/documents}">Manage Documents</a>
-    </section>
 </body>
 </html>

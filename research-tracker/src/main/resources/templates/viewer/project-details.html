@@ -1,24 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Project Details</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1 th:text="${project.title}">Project Title</h1>
-<p th:text="${project.description}">Project Description</p>
+<header>
+    <h1>Project Details</h1>
+    <nav><a href="/viewer/projects-list.html">Back to Projects</a></nav>
+</header>
 
-<h2>Milestones</h2>
-<ul>
-    <li th:each="m : ${project.milestones}" th:text="${m.title}">Milestone</li>
-</ul>
+<main id="project-details">
+    <!-- JS will populate project info -->
+</main>
 
-<h2>Documents</h2>
-<ul>
-    <li th:each="d : ${project.documents}">
-        <a th:href="${d.urlOrPath}" th:text="${d.title}">Document</a>
-    </li>
-</ul>
+<script>
+const projectId = window.location.pathname.split('/').pop();
+fetch(`/api/viewer/projects/${projectId}`)
+.then(res => res.json())
+.then(p => {
+    const main = document.getElementById('project-details');
+    main.innerHTML = `
+        <h2>${p.title}</h2>
+        <p><strong>PI:</strong> ${p.piName}</p>
+        <p><strong>Status:</strong> ${p.status}</p>
+        <p><strong>Description:</strong> ${p.description}</p>
+    `;
+});
+</script>
+
 </body>
 </html>

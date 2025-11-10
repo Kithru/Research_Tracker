@@ -1,30 +1,58 @@
 <header>
     <nav>
-        <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            
-            <!-- Admin Menu -->
-            <li th:if="${#authentication.principal.role == 'ADMIN'}">
-                <a th:href="@{/admin/dashboard}">Dashboard</a>
-            </li>
-            <li th:if="${#authentication.principal.role == 'ADMIN'}">
-                <a th:href="@{/admin/users}">Users</a>
-            </li>
-            
-            <!-- PI Menu -->
-            <li th:if="${#authentication.principal.role == 'PI'}">
-                <a th:href="@{/pi/dashboard}">My Dashboard</a>
-            </li>
-            
-            <!-- MEMBER Menu -->
-            <li th:if="${#authentication.principal.role == 'MEMBER'}">
-                <a th:href="@{/member/assigned-projects}">My Projects</a>
-            </li>
-            
-            <!-- VIEWER Menu -->
-            <li th:if="${#authentication.principal.role == 'VIEWER'}">
-                <a th:href="@{/viewer/projects-list}">Projects</a>
-            </li>
+        <ul id="nav-menu">
+            <!-- Menu items will be populated by JS -->
         </ul>
     </nav>
 </header>
+
+<script>
+    // Example: Fetch logged-in user info from backend
+    fetch('/api/auth/me') // This should return { username: "...", role: "ADMIN" }
+        .then(res => res.json())
+        .then(user => {
+            const menu = document.getElementById('nav-menu');
+            menu.innerHTML = ''; // clear any default content
+
+            // Home link (all users)
+            const homeLi = document.createElement('li');
+            homeLi.innerHTML = `<a href="/">Home</a>`;
+            menu.appendChild(homeLi);
+
+            // Admin menu
+            if(user.role === 'ADMIN') {
+                menu.innerHTML += `
+                    <li><a href="/admin/dashboard.html">Dashboard</a></li>
+                    <li><a href="/admin/users.html">Users</a></li>
+                    <li><a href="/admin/projects.html">Projects</a></li>
+                    <li><a href="/admin/documents.html">Documents</a></li>
+                    <li><a href="/admin/milestones.html">Milestones</a></li>
+                `;
+            }
+
+            // PI menu
+            if(user.role === 'PI') {
+                menu.innerHTML += `
+                    <li><a href="/pi/dashboard.html">My Dashboard</a></li>
+                    <li><a href="/pi/my-projects.html">My Projects</a></li>
+                `;
+            }
+
+            // Member menu
+            if(user.role === 'MEMBER') {
+                menu.innerHTML += `
+                    <li><a href="/member/assigned-projects.html">My Projects</a></li>
+                `;
+            }
+
+            // Viewer menu
+            if(user.role === 'VIEWER') {
+                menu.innerHTML += `
+                    <li><a href="/viewer/projects-list.html">Projects</a></li>
+                `;
+            }
+        })
+        .catch(err => {
+            console.error('Error loading user info:', err);
+        });
+</script>
