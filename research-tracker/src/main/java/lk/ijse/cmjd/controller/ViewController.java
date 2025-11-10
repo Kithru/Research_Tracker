@@ -1,16 +1,17 @@
 package lk.ijse.cmjd.controller;
 
-import lk.ijse.cmjd.model.User;
-import lk.ijse.cmjd.service.DocumentService;
-import lk.ijse.cmjd.service.MilestoneService;
-import lk.ijse.cmjd.service.ProjectService;
-import lk.ijse.cmjd.service.UserService;
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.security.Principal;
+import lk.ijse.cmjd.model.User;
+import lk.ijse.cmjd.service.DocumentService;
+import lk.ijse.cmjd.service.MilestoneService;
+import lk.ijse.cmjd.service.ProjectService;
+import lk.ijse.cmjd.service.UserService;
 
 @Controller
 public class ViewController {
@@ -32,8 +33,20 @@ public class ViewController {
 
     // ==================== ROOT REDIRECT ====================
     @GetMapping("/")
-    public String rootRedirect() {
+    public String home() {
         return "redirect:/login"; // redirect root URL to login page
+    }
+
+    // ==================== LOGIN / REGISTER ====================
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login"; // load login.html from templates
+    }
+
+    @GetMapping("/register")
+    public String showRegisterPage(Model model) {
+        model.addAttribute("user", new User());
+        return "register"; // load register.html from templates
     }
 
     // ==================== ADMIN ====================
@@ -115,21 +128,5 @@ public class ViewController {
     public String viewerProjectDetails(@PathVariable String id, Model model) {
         model.addAttribute("project", projectService.getProjectById(id));
         return "viewer/project-details";
-    }
-
-    @GetMapping("/")
-    public String home() {
-        return "login";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("/register")
-    public String registerForm(Model model) {
-        model.addAttribute("user", new User());
-        return "register";
     }
 }

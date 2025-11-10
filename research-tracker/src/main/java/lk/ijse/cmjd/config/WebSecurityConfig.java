@@ -23,8 +23,8 @@ public class WebSecurityConfig {
                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                .loginPage("/login") // custom login page
-                .loginProcessingUrl("/login") // same URL form submits to
+                .loginPage("/login") // tell Spring Security to use your login.html
+                .loginProcessingUrl("/login") // same as form action
                 .defaultSuccessUrl("/pi/dashboard", true)
                 .failureUrl("/login?error=true")
                 .permitAll()

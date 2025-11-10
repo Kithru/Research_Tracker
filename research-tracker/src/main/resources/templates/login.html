@@ -2,28 +2,22 @@
 <html>
 <head>
     <title>Login</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<h2>Login</h2>
 
-<div class="login-container">
-    <h2>Login</h2>
+<form action="/login" method="post">
+    <label>Email:</label>
+    <input type="text" name="username" required>
 
-    <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter username" required />
+    <label>Password:</label>
+    <input type="password" name="password" required>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter password" required />
+    <button type="submit">Login</button>
+</form>
 
-        <button type="submit">Login</button>
-    </form>
-
-    <div class="register-link">
-        <p>Don't have an account? <a href="/register">Sign Up</a></p>
-    </div>
-</div>
-
+<p style="color:red;" th:if="${param.error}">Invalid username or password.</p>
+<p style="color:green;" th:if="${param.logout}">You have been logged out.</p>
 </body>
 </html>
