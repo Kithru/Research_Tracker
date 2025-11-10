@@ -1,17 +1,49 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>Projects</title>
+    <title>Public Projects</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1>Public Projects</h1>
-<ul>
-    <li th:each="project : ${projects}">
-        <a th:href="@{'/viewer/project-details/' + ${project.id}}"
-           th:text="${project.title}">Project Title</a>
-    </li>
-</ul>
+<header>
+    <h1>Public Projects</h1>
+</header>
+
+<main>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>PI</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="viewer-projects-table"></tbody>
+    </table>
+</main>
+
+<script>
+fetch('/api/viewer/projects')
+.then(res => res.json())
+.then(projects => {
+    const tbody = document.getElementById('viewer-projects-table');
+    tbody.innerHTML = '';
+    projects.forEach(p => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${p.title}</td>
+                <td>${p.piName}</td>
+                <td>${p.status}</td>
+                <td>
+                    <a href="/viewer/project-details/${p.id}">View</a>
+                </td>
+            </tr>
+        `;
+    });
+});
+</script>
+
 </body>
 </html>

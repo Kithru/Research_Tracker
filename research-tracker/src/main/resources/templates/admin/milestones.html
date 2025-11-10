@@ -1,32 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Manage Milestones</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1>Milestones Management</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Project</th>
-        <th>Due Date</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="m : ${milestones}">
-        <td th:text="${m.title}">Milestone</td>
-        <td th:text="${m.project.title}">Project</td>
-        <td th:text="${m.dueDate}">Due Date</td>
-        <td>
-            <a th:href="@{'/admin/milestones/edit/' + ${m.id}}">Edit</a>
-            <a th:href="@{'/api/milestones/' + ${m.id} + '/delete'}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<header>
+    <h1>Manage Milestones</h1>
+    <nav><a href="/admin/dashboard.html">Dashboard</a></nav>
+</header>
+
+<main>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Milestone</th>
+                <th>Project</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="milestones-table-body"></tbody>
+    </table>
+</main>
+
+<script>
+fetch('/api/admin/milestones')
+.then(res => res.json())
+.then(ms => {
+    const tbody = document.getElementById('milestones-table-body');
+    tbody.innerHTML = '';
+    ms.forEach(m => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${m.title}</td>
+                <td>${m.projectTitle}</td>
+                <td>${m.dueDate}</td>
+                <td>${m.status}</td>
+                <td>
+                    <a href="/admin/milestones/edit/${m.id}">Edit</a> |
+                    <a href="/api/admin/milestones/${m.id}/delete">Delete</a>
+                </td>
+            </tr>
+        `;
+    });
+});
+</script>
+
 </body>
 </html>

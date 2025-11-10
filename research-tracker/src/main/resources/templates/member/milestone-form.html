@@ -1,24 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-    <title>Add Milestone</title>
+    <title>Milestone Form</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1>Add Milestone</h1>
+<header>
+    <h1>Add Milestone</h1>
+    <nav><a href="/member/assigned-projects.html">Back to Projects</a></nav>
+</header>
 
-<form th:action="@{/api/projects/{projectId}/milestones(projectId=${project.id})}" method="post">
-    <label>Title:</label>
-    <input type="text" name="title" required />
+<main>
+    <form id="milestone-form">
+        <label>Title:</label>
+        <input type="text" name="title" required>
+        <label>Due Date:</label>
+        <input type="date" name="dueDate" required>
+        <label>Status:</label>
+        <select name="status">
+            <option>Pending</option>
+            <option>Completed</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</main>
 
-    <label>Description:</label>
-    <textarea name="description"></textarea>
+<script>
+const form = document.getElementById('milestone-form');
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+    const projectId = window.location.pathname.split('/').pop(); // extract projectId
+    fetch(`/api/member/milestones/${projectId}`, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => alert('Milestone added!'))
+    .catch(err => console.error(err));
+});
+</script>
 
-    <label>Due Date:</label>
-    <input type="date" name="dueDate" required />
-
-    <button type="submit">Add Milestone</button>
-</form>
 </body>
 </html>

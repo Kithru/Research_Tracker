@@ -1,23 +1,79 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Project Details</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1 th:text="${project.title}">Project Title</h1>
-<p th:text="${project.description}">Description</p>
+<header>
+    <h1 id="project-title">Project Title</h1>
+    <nav>
+        <a href="/viewer/projects-list.html">Back to Projects</a>
+    </nav>
+</header>
 
-<h2>Milestones</h2>
-<ul>
-    <li th:each="m : ${project.milestones}" th:text="${m.title}">Milestone</li>
-</ul>
+<main>
+    <section>
+        <h2>Description</h2>
+        <p id="project-description">Loading...</p>
+    </section>
 
-<h2>Documents</h2>
-<ul>
-    <li th:each="d : ${project.documents}" th:text="${d.title}">Document</li>
-</ul>
+    <section>
+        <h2>Milestones</h2>
+        <ul id="project-milestones">
+            <li>Loading milestones...</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Documents</h2>
+        <ul id="project-documents">
+            <li>Loading documents...</li>
+        </ul>
+    </section>
+</main>
+
+<script>
+    // Extract projectId from URL
+    const projectId = window.location.pathname.split('/').pop();
+
+    // Fetch project details
+    fetch(`/api/viewer/projects/${projectId}`)
+        .then(res => res.json())
+        .then(project => {
+            // Set title and description
+            document.getElementById('project-title').textContent = project.title;
+            document.getElementById('project-description').textContent = project.description;
+
+            // Populate milestones
+            const milestonesUl = document.getElementById('project-milestones');
+            milestonesUl.innerHTML = '';
+            if (project.milestones && project.milestones.length > 0) {
+                project.milestones.forEach(m => {
+                    const li = document.createElement('li');
+                    li.textContent = m.title;
+                    milestonesUl.appendChild(li);
+                });
+            } else {
+                milestonesUl.innerHTML = '<li>No milestones found</li>';
+            }
+
+            // Populate documents
+            const documentsUl = document.getElementById('project-documents');
+            documentsUl.innerHTML = '';
+            if (project.documents && project.documents.length > 0) {
+                project.documents.forEach(d => {
+                    const li = document.createElement('li');
+                    li.textContent = d.title;
+                    documentsUl.appendChild(li);
+                });
+            } else {
+                documentsUl.innerHTML = '<li>No documents found</li>';
+            }
+        })
+        .catch(err => console.error('Error loading project details:', err));
+</script>
+
 </body>
 </html>
-

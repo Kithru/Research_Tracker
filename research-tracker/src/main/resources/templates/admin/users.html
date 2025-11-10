@@ -1,32 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Manage Users</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1>Users Management</h1>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}">1</td>
-        <td th:text="${user.name}">Name</td>
-        <td th:text="${user.role}">Role</td>
-        <td>
-            <a th:href="@{'/admin/users/edit/' + ${user.id}}">Edit</a>
-            <a th:href="@{'/api/users/' + ${user.id} + '/delete'}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<header>
+    <h1>Manage Users</h1>
+    <nav><a href="/admin/dashboard.html">Dashboard</a></nav>
+</header>
+
+<main>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="users-table-body">
+            <!-- JS will populate users here -->
+        </tbody>
+    </table>
+</main>
+
+<script>
+fetch('/api/admin/users')
+.then(res => res.json())
+.then(users => {
+    const tbody = document.getElementById('users-table-body');
+    tbody.innerHTML = '';
+    users.forEach(u => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${u.username}</td>
+                <td>${u.email}</td>
+                <td>${u.role}</td>
+                <td>
+                    <a href="/admin/users/edit/${u.id}">Edit</a> |
+                    <a href="/api/admin/users/${u.id}/delete">Delete</a>
+                </td>
+            </tr>
+        `;
+    });
+});
+</script>
+
 </body>
 </html>

@@ -1,31 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Manage Documents</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
 
-<h1>Documents Management</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Project</th>
-        <th>Uploaded By</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="doc : ${documents}">
-        <td th:text="${doc.title}">Doc Title</td>
-        <td th:text="${doc.project.title}">Project</td>
-        <td th:text="${doc.uploadedBy.name}">User</td>
-        <td>
-            <a th:href="@{'/api/documents/' + ${doc.id} + '/delete'}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<header>
+    <h1>Manage Documents</h1>
+    <nav><a href="/admin/dashboard.html">Dashboard</a></nav>
+</header>
+
+<main>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Project</th>
+                <th>Uploaded By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="documents-table-body"></tbody>
+    </table>
+</main>
+
+<script>
+fetch('/api/admin/documents')
+.then(res => res.json())
+.then(docs => {
+    const tbody = document.getElementById('documents-table-body');
+    tbody.innerHTML = '';
+    docs.forEach(doc => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${doc.title}</td>
+                <td>${doc.projectTitle}</td>
+                <td>${doc.uploadedBy}</td>
+                <td>
+                    <a href="/api/documents/${doc.id}/delete">Delete</a>
+                </td>
+            </tr>
+        `;
+    });
+});
+</script>
+
 </body>
 </html>

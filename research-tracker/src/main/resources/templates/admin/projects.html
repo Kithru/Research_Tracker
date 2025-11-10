@@ -1,31 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Manage Projects</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
-
-<h1>Projects Management</h1>
-<a th:href="@{/admin/projects/create}">Add New Project</a>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="project : ${projects}">
-        <td th:text="${project.title}">Project</td>
-        <td th:text="${project.status}">Status</td>
-        <td>
-            <a th:href="@{'/admin/projects/edit/' + ${project.id}}">Edit</a>
-            <a th:href="@{'/api/projects/' + ${project.id} + '/delete'}">Delete</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<header>
+    <h1>Manage Projects</h1>
+    <nav><a href="/admin/dashboard.html">Dashboard</a></nav>
+</header>
+<main>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>PI</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="projects-table-body"></tbody>
+    </table>
+</main>
+<script>
+fetch('/api/admin/projects')
+.then(res => res.json())
+.then(projects => {
+    const tbody = document.getElementById('projects-table-body');
+    tbody.innerHTML = '';
+    projects.forEach(p => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${p.title}</td>
+                <td>${p.piName}</td>
+                <td>${p.status}</td>
+                <td>
+                    <a href="/admin/projects/edit/${p.id}">Edit</a> |
+                    <a href="/api/admin/projects/${p.id}/delete">Delete</a>
+                </td>
+            </tr>
+        `;
+    });
+});
+</script>
 </body>
 </html>
