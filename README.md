@@ -1,5 +1,3 @@
-# Research_Tracker
-Research_Tracker
 # 📘 Research Tracker System
 
 ## 🧭 Overview
