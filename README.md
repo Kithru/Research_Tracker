@@ -54,11 +54,11 @@ cd Research_Tracker
 ### 2. Database Setup
 - Create a new MySQL database:
   ```sql
-  CREATE DATABASE research_tracker;
+  CREATE DATABASE researchtracker;
   ```
 - Import the complete schema and data from the provided **migration.sql** file:
   ```bash
-  mysql -u root -p research_tracker < migration.sql
+  mysql -u root -p researchtracker < migration.sql
   ```
   > 💡 The `migration.sql` file contains all required **table creation scripts** and **constraints**.
 
