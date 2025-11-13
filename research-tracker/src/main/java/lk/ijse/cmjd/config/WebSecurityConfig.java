@@ -24,7 +24,7 @@ public class WebSecurityConfig {
                 )
                 .formLogin(form -> form
                 .loginPage("/login")
-                .loginProcessingUrl("/login") // same as form action
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/pi/dashboard", true)
                 .failureUrl("/login?error=true")
                 .permitAll()
