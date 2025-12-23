@@ -139,4 +139,4 @@ Research_Tracker/
 
 ## 👨‍💻 Author
 **Kithru Viduranga**  
-🔗 [https://github.com/Kithru](https://github.com/Kithru)
+🔗 [https://github.com/Kithru] (https://github.com/Kithru)
