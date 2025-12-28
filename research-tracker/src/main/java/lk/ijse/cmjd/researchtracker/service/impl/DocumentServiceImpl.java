@@ -1,14 +1,15 @@
-package lk.ijse.cmjd.service.impl;
+package lk.ijse.cmjd.researchtracker.service.impl;
 
-import lk.ijse.cmjd.model.Document;
-import lk.ijse.cmjd.model.Project;
-import lk.ijse.cmjd.repository.DocumentRepository;
-import lk.ijse.cmjd.repository.ProjectRepository;
-import lk.ijse.cmjd.service.DocumentService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import lk.ijse.cmjd.researchtracker.model.Document;
+import lk.ijse.cmjd.researchtracker.model.Project;
+import lk.ijse.cmjd.researchtracker.repository.DocumentRepository;
+import lk.ijse.cmjd.researchtracker.repository.ProjectRepository;
+import lk.ijse.cmjd.researchtracker.service.DocumentService;
 
 @Service
 public class DocumentServiceImpl implements DocumentService {

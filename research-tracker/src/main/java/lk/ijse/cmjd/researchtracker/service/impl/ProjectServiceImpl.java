@@ -1,14 +1,15 @@
-package lk.ijse.cmjd.service.impl;
-
-import lk.ijse.cmjd.model.Project;
-import lk.ijse.cmjd.model.Status;
-import lk.ijse.cmjd.repository.ProjectRepository;
-import lk.ijse.cmjd.service.ProjectService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+package lk.ijse.cmjd.researchtracker.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import lk.ijse.cmjd.researchtracker.model.Project;
+import lk.ijse.cmjd.researchtracker.model.Status;
+import lk.ijse.cmjd.researchtracker.repository.ProjectRepository;
+import lk.ijse.cmjd.researchtracker.service.ProjectService;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {

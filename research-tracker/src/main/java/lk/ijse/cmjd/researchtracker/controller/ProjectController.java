@@ -1,8 +1,8 @@
-package lk.ijse.cmjd.controller;
+package lk.ijse.cmjd.researchtracker.controller;
 
-import lk.ijse.cmjd.model.Project;
-import lk.ijse.cmjd.model.Status;
-import lk.ijse.cmjd.service.ProjectService;
+import lk.ijse.cmjd.researchtracker.model.Project;
+import lk.ijse.cmjd.researchtracker.model.Status;
+import lk.ijse.cmjd.researchtracker.service.ProjectService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

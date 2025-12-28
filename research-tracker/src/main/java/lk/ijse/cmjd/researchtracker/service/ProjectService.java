@@ -1,9 +1,9 @@
-package lk.ijse.cmjd.service;
-
-import lk.ijse.cmjd.model.Project;
-import lk.ijse.cmjd.model.Status;
+package lk.ijse.cmjd.researchtracker.service;
 
 import java.util.List;
+
+import lk.ijse.cmjd.researchtracker.model.Project;
+import lk.ijse.cmjd.researchtracker.model.Status;
 
 public interface ProjectService {
 

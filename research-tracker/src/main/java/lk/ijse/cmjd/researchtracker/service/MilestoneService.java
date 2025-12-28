@@ -1,7 +1,8 @@
-package lk.ijse.cmjd.service;
+package lk.ijse.cmjd.researchtracker.service;
 
-import lk.ijse.cmjd.model.Milestone;
 import java.util.List;
+
+import lk.ijse.cmjd.researchtracker.model.Milestone;
 
 public interface MilestoneService {
 

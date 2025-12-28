@@ -1,8 +1,10 @@
-package lk.ijse.cmjd.repository;
+package lk.ijse.cmjd.researchtracker.repository;
 
-import lk.ijse.cmjd.model.Document;
-import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import lk.ijse.cmjd.researchtracker.model.Document;
 
 public interface DocumentRepository extends JpaRepository<Document, String> {
 

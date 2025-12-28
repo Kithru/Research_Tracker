@@ -1,10 +1,10 @@
-package lk.ijse.cmjd.service.impl;
+package lk.ijse.cmjd.researchtracker.service.impl;
 
-import lk.ijse.cmjd.model.Milestone;
-import lk.ijse.cmjd.model.Project;
-import lk.ijse.cmjd.repository.MilestoneRepository;
-import lk.ijse.cmjd.repository.ProjectRepository;
-import lk.ijse.cmjd.service.MilestoneService;
+import lk.ijse.cmjd.researchtracker.model.Milestone;
+import lk.ijse.cmjd.researchtracker.model.Project;
+import lk.ijse.cmjd.researchtracker.repository.MilestoneRepository;
+import lk.ijse.cmjd.researchtracker.repository.ProjectRepository;
+import lk.ijse.cmjd.researchtracker.service.MilestoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
