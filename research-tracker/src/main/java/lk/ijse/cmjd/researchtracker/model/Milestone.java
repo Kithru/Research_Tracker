@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.model;
+package lk.ijse.cmjd.researchtracker.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

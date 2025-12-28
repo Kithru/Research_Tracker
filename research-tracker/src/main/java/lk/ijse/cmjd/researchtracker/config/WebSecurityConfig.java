@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.config;
+package lk.ijse.cmjd.researchtracker.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

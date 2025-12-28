@@ -1,9 +1,9 @@
-package lk.ijse.cmjd.auth;
+package lk.ijse.cmjd.researchtracker.auth;
 
-import lk.ijse.cmjd.model.User;
-import lk.ijse.cmjd.model.UserRole;
-import lk.ijse.cmjd.repository.UserRepository;
-import lk.ijse.cmjd.config.JwtUtil;
+import lk.ijse.cmjd.researchtracker.model.User;
+import lk.ijse.cmjd.researchtracker.model.UserRole;
+import lk.ijse.cmjd.researchtracker.repository.UserRepository;
+import lk.ijse.cmjd.researchtracker.config.JwtUtil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

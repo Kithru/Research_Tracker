@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.config;
+package lk.ijse.cmjd.researchtracker.config;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -13,8 +13,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lk.ijse.cmjd.model.User;
-import lk.ijse.cmjd.repository.UserRepository;
+import lk.ijse.cmjd.researchtracker.model.User;
+import lk.ijse.cmjd.researchtracker.repository.UserRepository;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

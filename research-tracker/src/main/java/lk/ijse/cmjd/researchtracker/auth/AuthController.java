@@ -1,6 +1,6 @@
-package lk.ijse.cmjd.auth;
+package lk.ijse.cmjd.researchtracker.auth;
 
-import lk.ijse.cmjd.model.User;
+import lk.ijse.cmjd.researchtracker.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
