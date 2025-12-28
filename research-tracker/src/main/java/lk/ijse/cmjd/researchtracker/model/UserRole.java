@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.model;
+package lk.ijse.cmjd.researchtracker.model;
 
 public enum UserRole {
     ADMIN,
