@@ -1,8 +1,10 @@
-package lk.ijse.cmjd.repository;
+package lk.ijse.cmjd.researchtracker.repository;
 
-import lk.ijse.cmjd.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import lk.ijse.cmjd.researchtracker.model.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
 

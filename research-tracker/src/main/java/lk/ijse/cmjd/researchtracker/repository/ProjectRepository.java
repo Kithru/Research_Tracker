@@ -1,11 +1,12 @@
-package lk.ijse.cmjd.repository;
+package lk.ijse.cmjd.researchtracker.repository;
 
-import lk.ijse.cmjd.model.Project;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+import lk.ijse.cmjd.researchtracker.model.Project;
 
 public interface ProjectRepository extends JpaRepository<Project, String> {
 
