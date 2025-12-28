@@ -1,7 +1,7 @@
-package lk.ijse.cmjd.controller;
+package lk.ijse.cmjd.researchtracker.controller;
 
-import lk.ijse.cmjd.model.Milestone;
-import lk.ijse.cmjd.service.MilestoneService;
+import lk.ijse.cmjd.researchtracker.model.Milestone;
+import lk.ijse.cmjd.researchtracker.service.MilestoneService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

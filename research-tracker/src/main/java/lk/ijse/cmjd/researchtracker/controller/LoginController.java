@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.controller;
+package lk.ijse.cmjd.researchtracker.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

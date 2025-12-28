@@ -1,8 +1,9 @@
-package lk.ijse.cmjd.service;
+package lk.ijse.cmjd.researchtracker.service;
 
-import lk.ijse.cmjd.model.User;
 import java.util.List;
 import java.util.Optional;
+
+import lk.ijse.cmjd.researchtracker.model.User;
 
 public interface UserService {
 

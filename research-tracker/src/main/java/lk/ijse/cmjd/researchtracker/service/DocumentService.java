@@ -1,6 +1,6 @@
-package lk.ijse.cmjd.service;
+package lk.ijse.cmjd.researchtracker.service;
 
-import lk.ijse.cmjd.model.Document;
+import lk.ijse.cmjd.researchtracker.model.Document;
 import java.util.List;
 
 public interface DocumentService {

@@ -1,4 +1,4 @@
-package lk.ijse.cmjd.controller;
+package lk.ijse.cmjd.researchtracker.controller;
 
 import java.security.Principal;
 
@@ -7,11 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import lk.ijse.cmjd.model.User;
-import lk.ijse.cmjd.service.DocumentService;
-import lk.ijse.cmjd.service.MilestoneService;
-import lk.ijse.cmjd.service.ProjectService;
-import lk.ijse.cmjd.service.UserService;
+import lk.ijse.cmjd.researchtracker.model.User;
+import lk.ijse.cmjd.researchtracker.service.DocumentService;
+import lk.ijse.cmjd.researchtracker.service.MilestoneService;
+import lk.ijse.cmjd.researchtracker.service.ProjectService;
+import lk.ijse.cmjd.researchtracker.service.UserService;
 
 @Controller
 public class ViewController {
