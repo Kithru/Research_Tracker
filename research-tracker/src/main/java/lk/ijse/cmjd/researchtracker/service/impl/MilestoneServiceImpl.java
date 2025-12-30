@@ -1,13 +1,15 @@
 package lk.ijse.cmjd.researchtracker.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import lk.ijse.cmjd.researchtracker.model.Milestone;
 import lk.ijse.cmjd.researchtracker.model.Project;
 import lk.ijse.cmjd.researchtracker.repository.MilestoneRepository;
 import lk.ijse.cmjd.researchtracker.repository.ProjectRepository;
 import lk.ijse.cmjd.researchtracker.service.MilestoneService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class MilestoneServiceImpl implements MilestoneService {
@@ -20,7 +22,7 @@ public class MilestoneServiceImpl implements MilestoneService {
 
     @Override
     public Milestone createForProject(String projectId, Milestone milestone) {
-        Project project = projectRepository.findById(Id)
+        Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new RuntimeException("Project not found with id: " + projectId));
         milestone.setProject(project);
         return milestoneRepository.save(milestone);
