@@ -20,7 +20,7 @@ public class MilestoneServiceImpl implements MilestoneService {
 
     @Override
     public Milestone createForProject(String projectId, Milestone milestone) {
-        Project project = projectRepository.findById(projectId)
+        Project project = projectRepository.findById(Id)
                 .orElseThrow(() -> new RuntimeException("Project not found with id: " + projectId));
         milestone.setProject(project);
         return milestoneRepository.save(milestone);
