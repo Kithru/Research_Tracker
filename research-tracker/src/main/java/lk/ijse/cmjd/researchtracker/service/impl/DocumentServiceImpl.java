@@ -27,7 +27,7 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public Document createForProject(String projectId, Document document) {
-        Project project = projectRepository.findById(projectId)
+        Project project = projectRepository.findById()
                 .orElseThrow(() -> new RuntimeException("Project not found with id: " + projectId));
         document.setProject(project);
         return documentRepository.save(document);
