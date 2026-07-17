@@ -157,22 +157,32 @@ Visit: [http://localhost:8081](http://localhost:8081)
 ## 📂 Project Structure
 ```
 Research_Tracker/
- ├── migration.sql
- ├── pom.xml
- ├── src/
- │   ├── main/
- │   │   ├── java/lk/ijse/cmjd/
- │   │   │   ├── auth/
- │   │   │   ├── config/
- │   │   │   ├── controller/
- │   │   │   ├── model/
- │   │   │   ├── repository/
- │   │   │   └── service/
- │   │   └── resources/
- │   │       ├── templates/
- │   │       ├── static/
- │   │       └── application.properties
- └── README.md
+src/main/java/lk/ijse/cmjd/researchtracker
+
+│
+├── auth
+│   ├── AuthController
+│   ├── JwtService
+│   └── JwtFilter
+│
+├── user
+│   ├── UserEntity
+│   ├── UserRepository
+│   └── UserService
+│
+├── project
+│   ├── ProjectEntity
+│   ├── ProjectController
+│   ├── ProjectService
+│   └── ProjectRepository
+│
+├── milestone
+│
+├── document
+│
+├── config
+│
+└── exception
 ```
 
 ---
