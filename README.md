@@ -35,7 +35,7 @@ This platform ensures transparency and accountability throughout the research li
 | Layer | Technology |
 |-------|-------------|
 | **Backend** | Spring Boot (Java 17+) |
-| **Frontend** | Thymeleaf, HTML, CSS, JavaScript |
+| **Frontend** | React.js, HTML, CSS, JavaScript |
 | **Database** | MySQL |
 | **Security** | Spring Security (BCrypt password encryption) |
 | **Build Tool** | Maven |
