@@ -93,6 +93,55 @@ bezkoder.app.jwtExpirationMs=86400000
 
 ## ⚙️ Installation & Setup
 
+## ⚙️ Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone -b frontend https://github.com/Kithru/Research_Tracker.git
+cd Research_Tracker
+```
+
+> **Note:** The frontend source code is available in the `frontend` branch.
+
+---
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Configure the Backend API
+
+Update the API base URL in your Axios configuration (e.g., `src/api/axios.ts`):
+
+```typescript
+const API = axios.create({
+    baseURL: "http://localhost:8080/api",
+});
+```
+
+> **Note:** Change the `baseURL` if your Spring Boot backend is running on a different host or port.
+
+---
+
+### 4. Start the Development Server
+
+```bash
+npm start
+```
+
+The application will be available at:
+
+```
+http://localhost:3000
+```
+
+Ensure the Spring Boot backend is running before accessing the frontend.
+
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/Kithru/Research_Tracker.git
