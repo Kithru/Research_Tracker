@@ -205,23 +205,52 @@ Visit: [http://localhost:8081](http://localhost:8081)
 
 ## 📂 Project Structure
 ```
-Research_Tracker/
- ├── migration.sql
- ├── pom.xml
- ├── src/
- │   ├── main/
- │   │   ├── java/lk/ijse/cmjd/
- │   │   │   ├── auth/
- │   │   │   ├── config/
- │   │   │   ├── controller/
- │   │   │   ├── model/
- │   │   │   ├── repository/
- │   │   │   └── service/
- │   │   └── resources/
- │   │       ├── templates/
- │   │       ├── static/
- │   │       └── application.properties
- └── README.md
+Research-Tracker-frontend/
+│
+├── public/
+│
+├── src/
+│   ├── api/
+│   │   └── axios.ts
+│   │
+│   ├── assets/
+│   │
+│   ├── components/
+│   │   ├── Navbar.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── Loader.tsx
+│   │   └── ProtectedRoute.tsx
+│   │
+│   ├── context/
+│   │   └── AuthContext.tsx
+│   │
+│   ├── layouts/
+│   │   └── DashboardLayout.tsx
+│   │
+│   ├── pages/
+│   │   ├── Login.tsx
+│   │   ├── Register.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Projects.tsx
+│   │   ├── ProjectDetails.tsx
+│   │   ├── Milestones.tsx
+│   │   ├── Documents.tsx
+│   │   ├── Users.tsx
+│   │   └── NotFound.tsx
+│   │
+│   ├── services/
+│   │   ├── auth.service.ts
+│   │   ├── project.service.ts
+│   │   ├── milestone.service.ts
+│   │   └── document.service.ts
+│   │
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+│
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
 ---
