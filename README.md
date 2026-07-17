@@ -74,8 +74,8 @@ spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto= update
 
 # App Properties
-bezkoder.app.jwtSecret= bezKoderSecretKey
-bezkoder.app.jwtExpirationMs= 86400000
+kit.app.jwtSecret= kitSecretKey
+kit.app.jwtExpirationMs= 86400000
 ```
 - For MySQL
 ```
@@ -87,8 +87,8 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 spring.jpa.hibernate.ddl-auto=update
 
 # App Properties
-bezkoder.app.jwtSecret= ======================BezKoder=Spring===========================
-bezkoder.app.jwtExpirationMs=86400000
+kit.app.jwtSecret= ======================kit=Spring===========================
+kit.app.jwtExpirationMs=86400000
 
 
 ## ⚙️ Installation & Setup
